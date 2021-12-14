@@ -12,9 +12,16 @@ class App extends React.Component {
     Data2 : movieData
   }
   rand = ()=> {
-
-    let r = Math .round((Math.random())*Data.length)
+    let r = Math.round((Math.random())*Data.length)
     movieData.push(Data[r])
+    this.setState({Data2: movieData})
+  }
+  sortN = () => {
+    movieData.sort((a, b) => a.name.localeCompare(b.name))
+    this.setState({Data2: movieData})
+  }
+  sortP = () => {
+    movieData.sort((a,b) => b.popularity - a.popularity)
     this.setState({Data2: movieData})
   }
   render() { 
@@ -22,6 +29,8 @@ class App extends React.Component {
       <div className="App">
         <div className="sortItems">
           <button onClick={this.rand}>Add Random contact</button>
+          <button onClick={this.sortN}>Sort by Name</button>
+          <button onClick={this.sortP}>Sort by popularity</button>
         </div>
         <div className="castC" id='castC'>
         {
